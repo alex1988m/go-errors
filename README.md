@@ -28,7 +28,7 @@ This codebase contains examples of different error handling techniques in Go. Th
 
 ## Usage
 
-The code is structured into four listings, each demonstrating a unique error handling scenario. The `main` function runs all four listings in sequence.
+The code is structured into five listings, each demonstrating a unique error handling scenario. The `main` function runs all five listings in sequence.
 
 ### Listings
 
@@ -36,6 +36,7 @@ The code is structured into four listings, each demonstrating a unique error han
 2. **Listing 2**: Demonstrates handling a dynamic error that is not matched.
 3. **Listing 3**: Demonstrates handling a static error that is matched using a top-level variable.
 4. **Listing 4**: Demonstrates handling a dynamic error that is matched using a custom error type.
+5. **Listing 5**: Demonstrates handling wrapped errors, showing the propagation of errors up the call stack.
 
 ## Error Handling Guidance
 
