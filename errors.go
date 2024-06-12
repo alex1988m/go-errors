@@ -24,10 +24,12 @@ func logError(err error, logger *log.Logger) {
 		if errors.Is(err, ErrNotFound) {
 			logger.Println("error is matched as ErrNotFound")
 		} else if errors.As(err, &notFound) {
+			// the same as:
+			// } else if _, ok := err.(*UserNotFoundError); ok {
 			logger.Println("error is matched as UserNotFoundError")
 		} else {
 			logger.Println("error is not matched as ErrNotFound or UserNotFoundError")
 		}
-		logger.Printf("get user: %v", err)
+		logger.Printf("unexpected error: %v", err)
 	}
 }

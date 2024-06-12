@@ -24,3 +24,12 @@ func GetUser(name string, isStaticError bool, isMatchRequired bool) (*User, erro
 	}
 	return &User{Name: name}, nil
 }
+
+func SaveUser(name string, isStaticError bool, isMatchRequired bool) error {
+	if _, err := GetUser(name, isStaticError, isMatchRequired); err != nil {
+		// in case of %v - error will be obfuscated and printed "error is not matched as ErrNotFound or UserNotFoundError"
+		// return fmt.Errorf("save user %q: %w", name, err)
+		return fmt.Errorf("save user %q: %w", name, err)
+	}
+	return nil
+}

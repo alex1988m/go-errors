@@ -13,10 +13,13 @@ import (
 // | Yes 							|			dynamic		| custom error type							|
 
 func main() {
+	// unwrapped error
 	listing1()
 	listing2()
 	listing3()
 	listing4()
+	// wrapped error
+	listing5()
 }
 
 func listing1() {
@@ -67,6 +70,34 @@ func listing4() {
 
 	logger := log.New(os.Stdout, "listing4: ", 0)
 	_, err := GetUser("Adam", false, true)
+	logError(err, logger)
+	fmt.Println()
+}
+
+func listing5() {
+	// wrapped error
+	logger := log.New(os.Stdout, "listing5: ", 0)
+	err := SaveUser("Adam", true, false)
+	// listing5: error is not matched as ErrNotFound or UserNotFoundError
+	// listing5: unexpected error: save user "Adam": user not found
+	logError(err, logger)
+	fmt.Println()
+
+	err = SaveUser("Adam", false, false)
+	// listing5: error is not matched as ErrNotFound or UserNotFoundError
+	// listing5: unexpected error: save user "Adam": user with name "Adam" not found
+	logError(err, logger)
+	fmt.Println()
+
+	err = SaveUser("Adam", true, true)
+	// listing5: error is matched as ErrNotFound
+	// listing5: unexpected error: save user "Adam": user not found
+	logError(err, logger)
+	fmt.Println()
+
+	err = SaveUser("Adam", false, true)
+	// listing5: error is matched as UserNotFoundError
+	// listing5: unexpected error: save user "Adam": user with name "Adam" not found
 	logError(err, logger)
 	fmt.Println()
 }
